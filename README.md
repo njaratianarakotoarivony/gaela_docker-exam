@@ -54,7 +54,7 @@ docker rm mon-nginx
 
 Un Dockerfile permet de créer des images personnalisées à partir d’instructions textuelles.
 
-###🧪 Exemple de Dockerfile
+### 🧪 Exemple de Dockerfile
 
 #### Utiliser une image de base
 ```bash
@@ -84,7 +84,7 @@ docker build -t mon-app .
 
 Docker Compose permet de gérer des applications multi-conteneurs via un seul fichier docker-compose.yml.
 
-###🧪 Exemple de docker-compose.yml
+### 🧪 Exemple de docker-compose.yml
 ```bash
 version: '3.8'
 
@@ -141,7 +141,7 @@ docker volume rm mes-donnees
 
 Les réseaux Docker permettent aux conteneurs de communiquer entre eux, en toute sécurité.
 
-###🔧 Commandes utiles
+### 🔧 Commandes utiles
 
 #### Créer un réseau
 ```bash
@@ -163,7 +163,7 @@ docker network connect mon-reseau mon-conteneur
 
 Docker Swarm est l’outil d’orchestration natif de Docker. Il permet de gérer un cluster de nœuds pour le déploiement d’applications distribuées.
 
-###🔧 Commandes utiles
+### 🔧 Commandes utiles
 
 #### Initialiser le swarm
 ```bash
@@ -202,5 +202,91 @@ Créer un projet Docker complet avec une application Node.js connectée à une b
 
 #### 1. Crée la structure suivante :
 
+mon-projet/
+├── backend/
+│ ├── Dockerfile
+│ ├── package.json
+│ └── index.js
+├── docker-compose.yml
 
+#### 2. Le code de `index.js` (serveur Node.js simple)
+
+```js
+const express = require('express');
+const { Pool } = require('pg');
+const app = express();
+const port = 3000;
+
+const pool = new Pool({
+  host: 'db',
+  user: 'postgres',
+  password: 'exemple',
+  database: 'postgres',
+});
+
+app.get('/', async (req, res) => {
+  const result = await pool.query('SELECT NOW()');
+  res.send(`Heure actuelle : ${result.rows[0].now}`);
+});
+
+app.listen(port, () => {
+  console.log(`Serveur en écoute sur le port ${port}`);
+});
+```
+#### 3. Exemple de package.json
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.10.0"
+  }
+}
+#### 4. Dockerfile pour l'application Node.js
+FROM node:20
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["npm", "start"]
+#### 5. Fichier docker-compose.yml
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - app-net
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: exemple
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-net
+
+volumes:
+  db-data:
+
+networks:
+  app-net:
+#### ✅ Ce que tu dois faire
+ Créer les fichiers et dossiers ci-dessus.
+
+ Construire et lancer l’application avec docker-compose up.
+
+ Accéder à l’API sur http://localhost:3000 pour vérifier la connexion à PostgreSQL.
+
+ Observer les conteneurs avec docker ps.
+
+ Supprimer les conteneurs et les volumes avec docker-compose down -v.
 
