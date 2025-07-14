@@ -1,14 +1,14 @@
-# 🐳 Guide Complet sur Docker
+#  Guide Complet sur Docker
 
 Bienvenue dans ce guide de base sur Docker. Il couvre les principaux concepts que tout développeur ou administrateur système devrait connaître : **images**, **conteneurs**, **Dockerfile**, **Docker Compose**, **volumes**, **réseaux** et **Swarm**.
 
 ---
 
-## 📦 1. Docker Image
+##  1. Docker Image
 
 Une **image Docker** est un modèle figé qui contient tout ce dont une application a besoin pour s'exécuter (code, dépendances, configuration système, etc.).
 
-### 🔧 Commandes utiles
+###  Commandes utiles
 
 #### Télécharger une image existante depuis Docker Hub
 ```bash
@@ -23,12 +23,12 @@ docker images
 ```bash
 docker rmi <image_id>
 ```
-## 🧱 2. Docker Container
+##  2. Docker Container
 
 Un conteneur est une instance en cours d’exécution d’une image. Il est isolé mais peut interagir avec le système hôte via des ports, des volumes, etc.
 
 
-### 🔧 Commandes utiles
+###  Commandes utiles
 
 #### Lancer un conteneur
 ```bash
@@ -50,11 +50,11 @@ docker stop mon-nginx
 ```bash
 docker rm mon-nginx
 ```
-## 📝 3. Dockerfile
+##  3. Dockerfile
 
 Un Dockerfile permet de créer des images personnalisées à partir d’instructions textuelles.
 
-### 🧪 Exemple de Dockerfile
+###  Exemple de Dockerfile
 
 #### Utiliser une image de base
 ```bash
@@ -76,15 +76,15 @@ RUN npm install
 ```bash
 CMD ["npm", "start"]
 ```
-### 🔧 Commande de build
+###  Commande de build
 ```bash
 docker build -t mon-app .
 ```
-## ⚙️ 4. Docker Compose
+##  4. Docker Compose
 
 Docker Compose permet de gérer des applications multi-conteneurs via un seul fichier docker-compose.yml.
 
-### 🧪 Exemple de docker-compose.yml
+###  Exemple de docker-compose.yml
 ```bash
 version: '3.8'
 
@@ -101,7 +101,7 @@ services:
     environment:
       POSTGRES_PASSWORD: exemple
 ```
-### 🔧 Commandes utiles
+###  Commandes utiles
 
 #### Démarrer les services
 ```bash
@@ -115,11 +115,11 @@ docker-compose up -d
 ```bash
 docker-compose down
 ```
-## 💾 5. Docker Volume
+## 5. Docker Volume
 
 Les volumes permettent de persister les données indépendamment du cycle de vie des conteneurs.
 
-### 🔧 Commandes utiles
+###  Commandes utiles
 
 #### Créer un volume
 ```bash
@@ -137,11 +137,11 @@ docker run -v mes-donnees:/data busybox
 ```bash
 docker volume rm mes-donnees
 ```
-## 🌐 6. Docker Network
+##  6. Docker Network
 
 Les réseaux Docker permettent aux conteneurs de communiquer entre eux, en toute sécurité.
 
-### 🔧 Commandes utiles
+###  Commandes utiles
 
 #### Créer un réseau
 ```bash
@@ -159,11 +159,11 @@ docker run -d --network=mon-reseau --name serveur nginx
 ```bash
 docker network connect mon-reseau mon-conteneur
 ```
-## ⚓ 7. Docker Swarm
+##  7. Docker Swarm
 
 Docker Swarm est l’outil d’orchestration natif de Docker. Il permet de gérer un cluster de nœuds pour le déploiement d’applications distribuées.
 
-### 🔧 Commandes utiles
+###  Commandes utiles
 
 #### Initialiser le swarm
 ```bash
@@ -190,15 +190,15 @@ docker service rm web
 ```
 ---
 
-## 🧠 Exercice pratique : Déployer une application Node.js + PostgreSQL avec Docker
+##  Exercice pratique : Déployer une application Node.js + PostgreSQL avec Docker
 
-### 🎯 Objectif
+###  Objectif
 
 Créer un projet Docker complet avec une application Node.js connectée à une base de données PostgreSQL. L'application devra être conteneurisée, isolée en réseau, et persister ses données avec des volumes.
 
 ---
 
-### 📝 Étapes à suivre
+###  Étapes à suivre
 
 #### 1. Crée la structure suivante :
 
@@ -283,7 +283,7 @@ volumes:
 networks:
   app-net:
 ```
-#### ✅ Ce que tu dois faire
+####  Ce que tu dois faire
  Créer les fichiers et dossiers ci-dessus.
 
  Construire et lancer l’application avec docker-compose up.
