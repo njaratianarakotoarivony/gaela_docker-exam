@@ -10,14 +10,17 @@ Une **image Docker** est un modèle figé qui contient tout ce dont une applicat
 
 ### 🔧 Commandes utiles
 
+#### Télécharger une image existante depuis Docker Hub
 ```bash
-# Télécharger une image existante depuis Docker Hub
 docker pull nginx
+```
 
-# Lister les images disponibles localement
+#### Lister les images disponibles localement
+```bash
 docker images
-
-# Supprimer une image
+```
+#### Supprimer une image
+```bash
 docker rmi <image_id>
 ```
 ##🧱 2. Docker Container
