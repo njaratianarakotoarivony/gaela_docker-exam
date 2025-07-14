@@ -29,20 +29,25 @@ Un conteneur est une instance en cours d’exécution d’une image. Il est isol
 
 
 ### 🔧 Commandes utiles
+
+#### Lancer un conteneur
 ```bash
-# Lancer un conteneur
 docker run -d -p 8080:80 --name mon-nginx nginx
-
-# Lister les conteneurs actifs
+```
+#### Lister les conteneurs actifs
+```bash
 docker ps
-
-# Lister tous les conteneurs (y compris stoppés)
+```
+#### Lister tous les conteneurs (y compris stoppés)
+```bash
 docker ps -a
-
-# Arrêter un conteneur
+```
+#### Arrêter un conteneur
+```bash
 docker stop mon-nginx
-
-# Supprimer un conteneur
+```
+#### Supprimer un conteneur
+```bash
 docker rm mon-nginx
 ```
 ## 📝 3. Dockerfile
@@ -50,20 +55,25 @@ docker rm mon-nginx
 Un Dockerfile permet de créer des images personnalisées à partir d’instructions textuelles.
 
 ###🧪 Exemple de Dockerfile
+
+#### Utiliser une image de base
 ```bash
-# Utiliser une image de base
 FROM node:20
-
-# Définir le répertoire de travail
+```
+#### Définir le répertoire de travail
+```bash
 WORKDIR /app
-
-# Copier les fichiers dans l'image
+```
+#### Copier les fichiers dans l'image
+```bash
 COPY . .
-
-# Installer les dépendances
+```
+#### Installer les dépendances
+```bash
 RUN npm install
-
-# Commande par défaut au démarrage
+```
+#### Commande par défaut au démarrage
+```bash
 CMD ["npm", "start"]
 ```
 ### 🔧 Commande de build
@@ -92,14 +102,17 @@ services:
       POSTGRES_PASSWORD: exemple
 ```
 ### 🔧 Commandes utiles
+
+#### Démarrer les services
 ```bash
-# Démarrer les services
 docker-compose up
-
-# Démarrer en arrière-plan
+```
+#### Démarrer en arrière-plan
+```bash
 docker-compose up -d
-
-# Arrêter les services
+```
+#### Arrêter les services
+```bash
 docker-compose down
 ```
 ## 💾 5. Docker Volume
@@ -107,17 +120,21 @@ docker-compose down
 Les volumes permettent de persister les données indépendamment du cycle de vie des conteneurs.
 
 ### 🔧 Commandes utiles
-```bash
+
 # Créer un volume
+```bash
 docker volume create mes-donnees
-
-# Lister les volumes
+```
+#### Lister les volumes
+```bash
 docker volume ls
-
-# Utiliser un volume dans un conteneur
+```
+#### Utiliser un volume dans un conteneur
+```bash
 docker run -v mes-donnees:/data busybox
-
-# Supprimer un volume
+```
+#### Supprimer un volume
+```bash
 docker volume rm mes-donnees
 ```
 ## 🌐 6. Docker Network
@@ -125,17 +142,21 @@ docker volume rm mes-donnees
 Les réseaux Docker permettent aux conteneurs de communiquer entre eux, en toute sécurité.
 
 ###🔧 Commandes utiles
+
+#### Créer un réseau
 ```bash
-# Créer un réseau
 docker network create mon-reseau
-
-# Lister les réseaux
+```
+#### Lister les réseaux
+```bash
 docker network ls
-
-# Attacher un conteneur à un réseau
+```
+#### Attacher un conteneur à un réseau
+```bash
 docker run -d --network=mon-reseau --name serveur nginx
-
-# Connecter un conteneur existant
+```
+#### Connecter un conteneur existant
+```bash
 docker network connect mon-reseau mon-conteneur
 ```
 ## ⚓ 7. Docker Swarm
@@ -143,23 +164,28 @@ docker network connect mon-reseau mon-conteneur
 Docker Swarm est l’outil d’orchestration natif de Docker. Il permet de gérer un cluster de nœuds pour le déploiement d’applications distribuées.
 
 ###🔧 Commandes utiles
+
+#### Initialiser le swarm
 ```bash
-# Initialiser le swarm
 docker swarm init
+```
+#### Ajouter un nœud (sur une autre machine)
+#### Affiche une commande avec un token à utiliser
 
-# Ajouter un nœud (sur une autre machine)
-# Affiche une commande avec un token à utiliser
-
-# Déployer un service
+#### Déployer un service
+```bash
 docker service create --name web -p 80:80 nginx
-
-# Lister les services
+```
+#### Lister les services
+```bash
 docker service ls
-
-# Mettre à l’échelle un service
+```
+#### Mettre à l’échelle un service
+```bash
 docker service scale web=3
-
-# Arrêter un service
+```
+#### Arrêter un service
+```bash
 docker service rm web
 ```
 ---
