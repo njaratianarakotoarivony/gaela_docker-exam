@@ -234,6 +234,7 @@ app.listen(port, () => {
 });
 ```
 #### 3. Exemple de package.json
+```js
 {
   "name": "backend",
   "version": "1.0.0",
@@ -246,7 +247,9 @@ app.listen(port, () => {
     "pg": "^8.10.0"
   }
 }
+```
 #### 4. Dockerfile pour l'application Node.js
+```js
 FROM node:20
 WORKDIR /app
 COPY . .
@@ -279,6 +282,7 @@ volumes:
 
 networks:
   app-net:
+```
 #### ✅ Ce que tu dois faire
  Créer les fichiers et dossiers ci-dessus.
 
