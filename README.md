@@ -23,7 +23,8 @@ docker images
 ```bash
 docker rmi <image_id>
 ```
-##🧱 2. Docker Container
+## 🧱 2. Docker Container
+
 Un conteneur est une instance en cours d’exécution d’une image. Il est isolé mais peut interagir avec le système hôte via des ports, des volumes, etc.
 
 
@@ -44,7 +45,8 @@ docker stop mon-nginx
 # Supprimer un conteneur
 docker rm mon-nginx
 ```
-##📝 3. Dockerfile
+## 📝 3. Dockerfile
+
 Un Dockerfile permet de créer des images personnalisées à partir d’instructions textuelles.
 
 ###🧪 Exemple de Dockerfile
@@ -68,7 +70,8 @@ CMD ["npm", "start"]
 ```bash
 docker build -t mon-app .
 ```
-##⚙️ 4. Docker Compose
+## ⚙️ 4. Docker Compose
+
 Docker Compose permet de gérer des applications multi-conteneurs via un seul fichier docker-compose.yml.
 
 ###🧪 Exemple de docker-compose.yml
@@ -99,7 +102,8 @@ docker-compose up -d
 # Arrêter les services
 docker-compose down
 ```
-##💾 5. Docker Volume
+## 💾 5. Docker Volume
+
 Les volumes permettent de persister les données indépendamment du cycle de vie des conteneurs.
 
 ### 🔧 Commandes utiles
@@ -116,7 +120,8 @@ docker run -v mes-donnees:/data busybox
 # Supprimer un volume
 docker volume rm mes-donnees
 ```
-##🌐 6. Docker Network
+## 🌐 6. Docker Network
+
 Les réseaux Docker permettent aux conteneurs de communiquer entre eux, en toute sécurité.
 
 ###🔧 Commandes utiles
@@ -133,7 +138,8 @@ docker run -d --network=mon-reseau --name serveur nginx
 # Connecter un conteneur existant
 docker network connect mon-reseau mon-conteneur
 ```
-##⚓ 7. Docker Swarm
+## ⚓ 7. Docker Swarm
+
 Docker Swarm est l’outil d’orchestration natif de Docker. Il permet de gérer un cluster de nœuds pour le déploiement d’applications distribuées.
 
 ###🔧 Commandes utiles
